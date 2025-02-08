@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Log in with your account</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<horizontdiv th:insert="fragments/toolbar :: toolbar">...</horizontdiv>
+
+<iconbar><a href="/addNews">add news</a></iconbar>
+
+<div class="scroll-table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>UserName</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+    </table>
+    <div class="scroll-table-body">
+        <table>
+            <tbody>
+            <tr th:each="user: ${allUsers}" style="list-style-type:none;">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

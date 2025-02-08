@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Новости</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<horizontdiv th:insert="fragments/toolbar :: toolbar">...</horizontdiv>
+
+
+<iconbar><a href="/addNews">add news</a></iconbar>
+
+<div class="scroll-table">
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Data create</th>
+            <th>Data edit</th>
+        </tr>
+        </thead>
+    </table>
+    <div class="scroll-table-body">
+        <table>
+            <tbody>
+            <tr th:each="news: ${allNews}">
+                <td><a style="color: #2D2020" th:href="@{'/removeNews/' + ${news.id}}">delete</a></td>
+                <td th:text="${news.id}"></td>
+                <td th:text="${news.name}"></td>
+                <td th:text="${news.description}"></td>
+                <td th:text="${news.createData}"></td>
+                <td th:text="${news.editDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

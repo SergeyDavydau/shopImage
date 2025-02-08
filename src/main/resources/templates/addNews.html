@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add news</title>
+<!--    <link th:href="@{/css/main.css}" rel="stylesheet" />-->
+</head>
+<body>
+<div th:insert="fragments/toolbar :: toolbar">...</div>
+
+<div th:if="${errors != null}" th:insert="fragments/errorbar :: errorlist">...</div>
+
+<shop_form>
+    <form th:action="@{/addNews}" method="post" th:object="${newsForm}">
+        <input type="text" id="name" name="name" autofocus="autofocus" placeholder="name" /> <br />
+        <input type="text" id="description" name="description" placeholder="description" required="required"/> <br />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Save news</button>
+    </form>
+</shop_form>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Главная</title>
+    <meta charset="utf-8">
+<!--    <link th:href="@{/css/main.css}" rel="stylesheet" />-->
+</head>
+
+<body>
+<div th:insert="fragments/toolbar :: toolbar">...</div>
+
+
+
+<div style="color: white" sec:authorize="hasRole('USER')">Text visible to user.</div>
+<div style="color: white" sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+<div style="color: white" sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
+<div style="color: white" sec:authorize="!isAuthenticated()">
+   NOT authenticated users.
+</div>
+
+</body>
+</html>

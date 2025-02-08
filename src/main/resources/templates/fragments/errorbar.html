@@ -1,0 +1,8 @@
+<div style="width: 80%;" th:fragment="errorlist" class="errorlist">
+
+  <h4 th:each="error: ${errors}">
+
+    <h4 th:text="${error.value}" />
+  </h4>
+
+</div>
