@@ -1,6 +1,5 @@
 
-<horizontdiv th:fragment="toolbar" class="toolbar" xmlns:sec="http://www.w3.org/1999/xhtml">
-
+<div th:fragment="toolbar" class="toolbar" xmlns:sec="http://www.w3.org/1999/xhtml">
     <link th:href="@{/css/main.css}" rel="stylesheet" />
 
     <horizontdiv sec:authorize="!isAuthenticated()"><a href="/login">Login</a></horizontdiv>
@@ -9,7 +8,7 @@
     <horizontdiv><a href="/news">News</a></horizontdiv>
     <horizontdiv><a href="/admin">Users</a></horizontdiv>
     <p></p>
-</horizontdiv>
+</div>
 
 
 

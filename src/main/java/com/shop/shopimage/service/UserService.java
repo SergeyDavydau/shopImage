@@ -5,8 +5,11 @@ import com.shop.shopimage.model.User;
 import com.shop.shopimage.repo.RoleRepo;
 import com.shop.shopimage.repo.UserRepo;
 
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,8 +17,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -76,5 +82,21 @@ public class UserService implements UserDetailsService{
     public List<User> usergtList(Long idMin) {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
+    }
+
+    @EventListener
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public   void setDefaultAdmin(ContextRefreshedEvent event) {
+        User user = new User();
+//        user.setId(1L);
+        user.setUsername("admin");
+        user.setPassword(bCryptPasswordEncoder.encode("admin"));
+        Role role = new Role();
+        role.setName("ROLE_ADMIN");
+        user.setRoles(Collections.singleton(role));
+        userRepo.save(user);
+
+        User saveuser = userRepo.findByUsername("admin");
+        System.out.printf("saveuser = " + saveuser.getUsername());
     }
 }

@@ -1,6 +1,7 @@
 package com.shop.shopimage.controller;
 
 import com.shop.shopimage.model.User;
+import com.shop.shopimage.repo.UserRepo;
 import com.shop.shopimage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 public class RegistrationController {
@@ -19,10 +20,14 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    UserRepo userRepo;
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
+        System.out.println( "save user = " + userRepo.findByUsername("admin").getUsername());
         return "registration";
     }
 

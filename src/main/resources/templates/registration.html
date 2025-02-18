@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div th:insert="fragments/toolbar :: toolbar">...</div>
+<div th:insert="~{fragments/toolbar :: toolbar}">...</div>
 
 <div class="login">
     <form th:action="@{/registration}" method="post" th:object="${userForm}">

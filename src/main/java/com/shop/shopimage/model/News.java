@@ -1,15 +1,13 @@
 package com.shop.shopimage.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
-
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -24,19 +22,21 @@ public class News {
     Long id;
 
     @NotBlank(message = "имя не должно быть пустым")
-    @Size(max = 30, message = "имя не должно быть больше 30 символов")
+    @Size(min = 1, max = 30, message = "имя не должно быть больше 30 символов")
     String name;
 
     @NotBlank
     @Size(max = 2000, message = "описание не должно быть больше 2000 символов")
     String description;
 
-    Date  createData;
+    @Column(name = "create_date")
+    Date  createDate;
 
     Date  editDate;
 
-    @ManyToOne
-    User user;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="author_id")
+    User authorId;
 
 
 }

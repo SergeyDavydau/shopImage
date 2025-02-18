@@ -1,7 +1,7 @@
 package com.shop.shopimage.model;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 import lombok.*;
@@ -24,7 +24,7 @@ public class Role implements GrantedAuthority {
 
     String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<User> users;
 
     @Override

@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<horizontdiv th:insert="fragments/toolbar :: toolbar">...</horizontdiv>
+<horizontdiv th:insert="~{fragments/toolbar :: toolbar}">...</horizontdiv>
 
 
 <iconbar><a href="/addNews">add news</a></iconbar>
@@ -32,8 +32,8 @@
                 <td th:text="${news.id}"></td>
                 <td th:text="${news.name}"></td>
                 <td th:text="${news.description}"></td>
-                <td th:text="${news.createData}"></td>
-                <td th:text="${news.editDate}"></td>
+                <td th:text="${#dates.format(news.createDate, 'yyyy-MM-dd | HH:mm')}"></td>
+                <td th:text="${#dates.format(news.editDate, 'yyyy-MM-dd | HH:mm')}"></td>
             </tr>
             </tbody>
         </table>

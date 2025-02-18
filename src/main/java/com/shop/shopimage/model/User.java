@@ -2,13 +2,17 @@ package com.shop.shopimage.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@SelectBeforeUpdate
 public class User implements UserDetails {
 
     @Id
@@ -40,6 +45,13 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     Set<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "authorId")
+    List<News> newsList;
+
+    public List<News> getNewsList() {
+        return newsList != null ? newsList : new ArrayList<News>();
+    }
 
     @Transactional
     public void setProxy(){

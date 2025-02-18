@@ -64,7 +64,10 @@ horizontdiv
 {
     /*line-height: 120px;!*Высота строки + верт. центрирования текста*!*/
     font-size: 40px;
-    margin-right: 30px;
+    margin-top: 5%;
+
+    margin-right: 10px;
+    position: static !important;
 
 
 
