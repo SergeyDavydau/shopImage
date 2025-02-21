@@ -9,7 +9,7 @@
 <horizontdiv th:insert="~{fragments/toolbar :: toolbar}">...</horizontdiv>
 
 
-<iconbar><a href="/addNews">add news</a></iconbar>
+<iconbar><a href="/addNews"> &#9998; add news</a></iconbar>
 
 <div class="scroll-table">
     <table>
@@ -28,7 +28,7 @@
         <table>
             <tbody>
             <tr th:each="news: ${allNews}">
-                <td><a style="color: #2D2020" th:href="@{'/removeNews/' + ${news.id}}">delete</a></td>
+                <td><a style="color: #2D2020" th:href="@{'/removeNews/' + ${news.id}}"><img width="15" th:src="@{icon/remove.png}" ></a></td>
                 <td th:text="${news.id}"></td>
                 <td th:text="${news.name}"></td>
                 <td th:text="${news.description}"></td>

@@ -1,15 +1,12 @@
 package com.shop.shopimage.validator;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.context.ApplicationContext;
-import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Component
 public class ValidateBuilder {

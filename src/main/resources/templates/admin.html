@@ -8,12 +8,14 @@
 <body>
 <horizontdiv th:insert="~{fragments/toolbar :: toolbar}">...</horizontdiv>
 
-<iconbar><a href="/addNews">add news</a></iconbar>
+<iconbar><a href="/addUser">add user &#9998; </a></iconbar>
 
+<img th:src="@{../static/icon/remove.png}">
 <div class="scroll-table">
     <table>
         <thead>
             <tr>
+                <th></th>
                 <th>ID</th>
                 <th>UserName</th>
                 <th>Password</th>
@@ -23,7 +25,9 @@
     <div class="scroll-table-body">
         <table>
             <tbody>
+
             <tr th:each="user: ${allUsers}" style="list-style-type:none;">
+            <td><img width="15" th:src="@{icon/remove.png}" ></td>
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.password}"></td>

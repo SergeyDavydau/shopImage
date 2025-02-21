@@ -6,19 +6,21 @@ import com.shop.shopimage.repo.NewsRepo;
 import com.shop.shopimage.repo.UserRepo;
 import com.shop.shopimage.service.NewsService;
 import com.shop.shopimage.validator.ValidateBuilder;
-import org.springframework.beans.factory.annotation.Autowired;;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
-
-import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 @Controller
 public class NewsController {
